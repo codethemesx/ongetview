@@ -2,9 +2,12 @@
   "functions": {
     "api/*.php": {
       "runtime": "vercel-php@0.6.0"
+    },
+    "api/hello.js": {
+      "runtime": "node@14"
     }
   },
   "routes": [
-    { "src": "/views/(.*?)",  "dest": "/api/index.php?request=$1" }
+    { "src": "/views/(.*?)",  "dest": "/api/hello.js?request=$1" }
   ]
 }
