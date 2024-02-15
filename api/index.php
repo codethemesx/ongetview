@@ -7,13 +7,14 @@ $data = file_exists($filename) ? json_decode(file_get_contents($filename), true)
 $deviceId = isset($_COOKIE['device_id']) ? $_COOKIE['device_id'] : uniqid();
 $parametro = isset($_GET['request']) ? $_GET['request'] : '';
 
-if (array_key_exists($deviceId, $data)) {
-    // Atualiza a data da última solicitação e o parâmetro
-    $data[$deviceId]['last_request'] = time();
-    $data[$deviceId]['parametro'] = $parametro;
-} else {
+// Verifica se o dispositivo já existe no array
+if (!array_key_exists($deviceId, $data)) {
     // Adiciona novo dispositivo com parâmetro
     $data[$deviceId] = ['last_request' => time(), 'parametro' => $parametro];
+} else {
+    // Atualiza a data da última solicitação e o parâmetro se já existe
+    $data[$deviceId]['last_request'] = time();
+    $data[$deviceId]['parametro'] = $parametro;
 }
 
 // Remove dispositivos inativos após 30s
