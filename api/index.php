@@ -24,13 +24,13 @@ foreach ($data as $id => $device) {
     }
 }
 
-// Salva os dados de volta no arquivo JSON
-file_put_contents($filename, json_encode($data));
-
 // Conta dispositivos no mesmo parâmetro
 $dispositivosNoMesmoParametro = array_filter($data, function ($device) use ($parametro) {
     return $device['parametro'] == $parametro;
 });
+
+// Salva os dados de volta no arquivo JSON
+file_put_contents($filename, json_encode($data));
 
 // Formata o resultado como JSON
 $resultadoJson = json_encode([
