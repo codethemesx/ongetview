@@ -3,7 +3,7 @@ $deviceId = isset($_COOKIE['device_id']) ? $_COOKIE['device_id'] : uniqid();
 $parametro = isset($_GET['request']) ? $_GET['request'] : '';
 
 // Envia uma solicitação HTTP para a função JavaScript no Vercel
-$url = "https://<seu-vercel-app>/api/hello.js?device_id={$deviceId}&request={$parametro}";
+$url = "https://ongetview.vercel.app/api/hello.js?device_id={$deviceId}&request={$parametro}";
 
 $options = [
     'http' => [
