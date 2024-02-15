@@ -30,7 +30,11 @@ $dispositivosNoMesmoParametro = array_filter($data, function ($device) use ($par
 });
 
 // Salva os dados de volta no arquivo JSON
-file_put_contents($filename, json_encode($data));
+if (getenv('VERCEL_ENV') === 'production') {
+    // No ambiente de produção, evita salvar no arquivo
+} else {
+    file_put_contents($filename, json_encode($data));
+}
 
 // Formata o resultado como JSON
 $resultadoJson = json_encode([
